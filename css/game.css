@@ -1,0 +1,66 @@
+/* CSS Document */
+
+html, body {
+	width: 700px;
+	margin: 0 auto;
+	font-family: sans-serif;
+	font-size: 13px;
+	color:red;
+	background-image:url(../img/universe.jpg)
+}
+	
+h1 {
+	margin: 2px;
+    color:wheat;}
+
+p 	{
+	margin-top:5px;
+	margin-bottom:10px;
+	text-align:center;
+    color:yellow;
+	}
+	
+button {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px; }
+	
+div#content {
+	padding: 20px;
+	background-image:url(../img/meditation.jpg);
+    boarder:solid 2px}
+	
+div#controls {
+	text-align: right; }
+	
+div#controls span {
+	font-weight: bold;
+	color: #990000; }
+	
+div#controls button {
+	margin-left: 20px; }
+	
+div#timer {
+	display: none;
+	font-weight: bold; 
+	margin-left: 20px; 
+	color:darkorange; }
+	
+div#gamespace {
+	margin: 20px;
+	padding: 10px;
+	height: 350px;
+	background-image:url(../img/cr7.jpg);
+	border: 2px solid #CCC; 
+     position: relative; 
+}
+
+div#gamespace img {
+     position: absolute;
+}
+
+@-moz-document url-prefix() {
+	   div#timer {
+	   margin-top:20px;
+	   }
+	}

@@ -1,0 +1,122 @@
+<!-- 
+		Developer: Moses Byanyuma
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+      
+    <title>Whack-A-Ball</title>
+    
+    
+	<link href="css/game.css" rel="stylesheet" />
+	<script src="js/jquery-1.12.1.js"></script>
+	<script src="jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<script>
+        
+	$(document).ready( function() {
+        
+	 	$( "#start_button" ).click(function() {
+            $("#start_button").off("click");
+ 		     beginGame();
+            });
+        
+            $("#gamespace").on("click", "img", function(){ 
+                $(this).stop(true).hide( "explode", { pieces: 13 }, 550 );       
+            addScore();
+            
+            
+            });
+		});
+        
+    var playerScore = 0;
+    var SecsRemaining = 30;
+            
+	function positioningForX() {
+  		return Math.floor(Math.random()*500);
+		}
+	function positioningForY() {
+  		return Math.floor(Math.random()*295);
+		}
+		
+        function addScore() {
+  		playerScore = playerScore + 1;
+  		$("#score").html(playerScore + " pts");
+		}
+	 
+        
+	function beginGame() {
+        $('#gamespace').css('background-image','url(img/bluebackground.jpg)');
+        //$("p").css("color", "#FFFFFF");
+		
+        $("#timer").show();
+			decrementation();
+            addMole();
+    }
+        
+    var intervalAddM;
+    var intervalDecrem;
+        var countForBall = 0;
+        
+    function decrementation () {
+        
+			
+        if (SecsRemaining >= 0)
+            {
+                $("#timer").html(SecsRemaining + " seconds left");
+        intervalDecrem = setTimeout("decrementation()", 1000);
+        SecsRemaining --;
+            }
+        else {
+            alert("DANG GAME OVER! Final Score: " + playerScore + " pts! Think you can do better? The game is re-loaded automatically :) ");
+            $("#gamespace").off("click");
+            clearTimeout(intervalDecrem);
+            clearTimeout(intervalAddM);
+            location.reload();
+            //SecsRemaining = 30;
+          //  decrementation();
+        }
+    }
+    
+        function randomTimeInterval() {
+  		return Math.floor(Math.random()*3000);
+		}
+        
+    function addMole() {
+      var right =  positioningForX();
+        var left = positioningForY();
+        var timeInt = randomTimeInterval();
+
+			$("#gamespace").append(	'<img id="mole'+countForBall+'" src="img/soccerball.png"  style="top:'+left+'px;left:'+right+'px;" />');
+$("#mole"+countForBall).delay(randomTimeInterval()).fadeOut(200);
+        countForBall++;
+        intervalAddM = setTimeout("addMole()", timeInt);
+        
+		}
+	</script>
+    
+  </head>
+  <body>
+
+	<div id="content">
+
+		<h1>Whack-A-Ball</h1>
+		
+		<p>After clicking "start", you will have 30 seconds to click
+		as many moles as you can. The moles appear randomly so be ready! </p>
+		
+		<div id="controls">
+			<span id="score">0 pts</span>
+			<button type="button" id="start_button">Start!</button>
+		</div>
+		
+		<div id="timer">30 seconds left</div>
+		
+		<div id="gamespace">
+			
+		</div>
+		
+	</div>
+  </body>
+</html>
